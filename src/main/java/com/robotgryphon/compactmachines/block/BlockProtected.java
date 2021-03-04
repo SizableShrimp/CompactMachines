@@ -18,11 +18,13 @@ public abstract class BlockProtected extends Block {
         super(properties);
     }
 
-//    @Override
-//    public boolean removedByPlayer(BlockState state, World world, BlockPos pos, PlayerEntity player, boolean willHarvest) {
+    @Override
+    public boolean canHarvestBlock(BlockState state, IBlockReader world, BlockPos pos, PlayerEntity player) {
+        if(isBlockProtected(state, world, pos))
+            return false;
 
-//    }
-
+        return super.canHarvestBlock(state, world, pos, player);
+    }
 
     @Override
     public boolean removedByPlayer(BlockState state, World world, BlockPos pos, PlayerEntity player, boolean willHarvest, FluidState fluid) {
